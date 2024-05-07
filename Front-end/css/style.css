@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+}
+
+.menu {
+    background-color: black; /* Color de fondo del menú */
+    padding: 10px; /* Espacio interno para que no esté pegado a los bordes */
+}
+
+.opciones{
+    margin: 9px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+a{
+    text-decoration: none;
+    margin-right: 4em;
+    color: white; /* Color del texto */
+    font-size: 21px;
+}
+
+/* Media query para pantallas con ancho menor o igual a 600px */
+@media (max-width: 600px) {
+    .opciones {
+        flex-direction: column; /* Cambia la dirección del flexbox a columna */
+        align-items: flex-end; /* Alinea los elementos a la derecha */
+    }
+    a {
+        margin-right: 0; /* Elimina el margen derecho */
+        margin-bottom: 1em; /* Añade espacio entre los elementos */
+    }
+}
