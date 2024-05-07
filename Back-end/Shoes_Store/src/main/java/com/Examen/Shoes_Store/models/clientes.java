@@ -17,11 +17,11 @@ public class clientes {
 
 	@Id
 	@GeneratedValue(strategy =GenerationType.UUID)
-	@Column(name="id_cliente", nullable=false, length = 36)
-	private String id;
+	@Column(name="id_cliente", nullable=false, length = 36,columnDefinition = "char(36)")
+	private String id_cliente;
 
 	@Enumerated(EnumType.STRING)
-	@Column(name="tipo_identificacion", nullable=false, length = 2)
+	@Column(name="tipo_identificacion", nullable=false, length = 3)
 	private tipo_identificacion tipo_identificacion;
 	
 	@Column(name="identificacion", nullable=false, length = 10)
@@ -49,17 +49,15 @@ public class clientes {
 
 	
 
-	
-	
 
 	
 
-	public String getId() {
-		return id;
+	public String getId_cliente() {
+		return id_cliente;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setId_cliente(String id_cliente) {
+		this.id_cliente = id_cliente;
 	}
 
 	public tipo_identificacion getTipo_identificacion() {
@@ -126,11 +124,11 @@ public class clientes {
 		this.estado = estado;
 	}
 
-	public clientes(String id, com.Examen.Shoes_Store.models.clientes.tipo_identificacion tipo_identificacion,
+	public clientes(String id_cliente, com.Examen.Shoes_Store.models.clientes.tipo_identificacion tipo_identificacion,
 			String identificacion, String nombre_cliente, String apellido_cliente, String telefono, String direccion,
 			String ciudad, com.Examen.Shoes_Store.models.clientes.estado estado) {
 		super();
-		this.id = id;
+		this.id_cliente = id_cliente;
 		this.tipo_identificacion = tipo_identificacion;
 		this.identificacion = identificacion;
 		this.nombre_cliente = nombre_cliente;
@@ -158,4 +156,10 @@ public class clientes {
         PENDIENTE,
         
     }
+
+	public String getId() {
+		return id_cliente;
+	}
+
+	
 }
