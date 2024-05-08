@@ -2,6 +2,8 @@ package com.Examen.Shoes_Store.models;
 
 
 
+
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -27,9 +29,9 @@ public class productos {
 	@Column(name="cantidad", nullable=false)
 	private int cantidad;
 
-	@Column(name="precio", nullable=false, columnDefinition = "decimal(9,2)")
-	private double precio;
-
+	@Column(name = "precio", nullable = false, length = 9)
+	private String precio;
+	
 	@Column(name="porcentaje_iva", nullable=false, length = 2)
 	private int porcentaje_iva;
 	    
@@ -85,12 +87,12 @@ public class productos {
 	}
 
 
-	public double getPrecio() {
+	public String getPrecio() {
 		return precio;
 	}
 
 
-	public void setPrecio(double precio) {
+	public void setPrecio(String precio) {
 		this.precio = precio;
 	}
 
