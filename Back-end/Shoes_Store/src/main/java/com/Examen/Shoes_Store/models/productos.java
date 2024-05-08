@@ -31,7 +31,7 @@ public class productos {
 	private double precio;
 
 	@Column(name="porcentaje_iva", nullable=false, length = 2)
-	private double porcentaje_iva;
+	private int porcentaje_iva;
 	    
 	@Column(name="porcentaje_descuento", nullable=false, length = 2)
 	private int porcentaje_descuento;
@@ -42,7 +42,10 @@ public class productos {
 	private estado estado;
 	
 
-    public String getId_producto() {
+    
+
+
+	public String getId_producto() {
 		return id_producto;
 	}
 
@@ -92,12 +95,12 @@ public class productos {
 	}
 
 
-	public double getPorcentaje_iva() {
+	public int getPorcentaje_iva() {
 		return porcentaje_iva;
 	}
 
 
-	public void setPorcentaje_iva(double porcentaje_iva) {
+	public void setPorcentaje_iva(int porcentaje_iva) {
 		this.porcentaje_iva = porcentaje_iva;
 	}
 
@@ -118,20 +121,6 @@ public class productos {
 
 
 	public void setEstado(estado estado) {
-		this.estado = estado;
-	}
-
-
-	public productos(String id_producto, String nombre_producto, String descripcion, int cantidad, double precio,
-			double porcentaje_iva, int porcentaje_descuento, com.Examen.Shoes_Store.models.productos.estado estado) {
-		super();
-		this.id_producto = id_producto;
-		this.nombre_producto = nombre_producto;
-		this.descripcion = descripcion;
-		this.cantidad = cantidad;
-		this.precio = precio;
-		this.porcentaje_iva = porcentaje_iva;
-		this.porcentaje_descuento = porcentaje_descuento;
 		this.estado = estado;
 	}
 
