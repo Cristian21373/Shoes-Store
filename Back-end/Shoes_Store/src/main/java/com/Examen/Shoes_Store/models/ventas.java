@@ -10,7 +10,9 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+
 
 @Entity
 public class ventas {
@@ -21,10 +23,10 @@ public class ventas {
 	private String id_venta;
 	
 	@ManyToOne
-	@Column(name="cliente_id_cliente", nullable=false, length = 36)
-	private String cliente_id_cliente;
-	
-	@ManyToOne
+	@JoinColumn(name="cliente_id_cliente", nullable=false)
+	private clientes cliente_id_cliente;
+
+
 	@Column(name="total", nullable=false, length = 45)
 	private String total;
 	
@@ -35,6 +37,10 @@ public class ventas {
 	@Column(name="fecha_venta", nullable=false)
 	private Date fecha_venta;
 	
+
+
+
+
 
 
 
@@ -55,7 +61,7 @@ public class ventas {
 
 
 
-	public String getCliente_id_cliente() {
+	public clientes getCliente_id_cliente() {
 		return cliente_id_cliente;
 	}
 
@@ -63,7 +69,7 @@ public class ventas {
 
 
 
-	public void setCliente_id_cliente(String cliente_id_cliente) {
+	public void setCliente_id_cliente(clientes cliente_id_cliente) {
 		this.cliente_id_cliente = cliente_id_cliente;
 	}
 
@@ -119,7 +125,7 @@ public class ventas {
 
 
 
-	public ventas(String id_venta, String cliente_id_cliente, String total,
+	public ventas(String id_venta, clientes cliente_id_cliente, String total,
 			com.Examen.Shoes_Store.models.ventas.estado estado, Date fecha_venta) {
 		super();
 		this.id_venta = id_venta;
@@ -155,6 +161,12 @@ public class ventas {
 		
 		return id_venta;
 	}
+
+
+
+
+
+	
 }
 
 
