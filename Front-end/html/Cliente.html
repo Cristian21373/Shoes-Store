@@ -5,16 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/Front-end/css/style.css">
     <title>Document</title>
-
 </head>
 <body>
-    <div class="menu">
-        <div class="opciones">
-            <a href="./Cliente.html">Cliente</a>
-            <a href="./Producto.html">Producto</a>
-            <a href="./Factura.html">Factura</a>
-            <a href="">Cerrar sesión</a> <!-- Corregí la ortografía -->
+    <div class="barra-lateral">
+        <div>
+            <div class="nombre-pagina">
+                <ion-icon id="cloud" name="cloud-outline"></ion-icon>
+                <span>Shoe Shop</span>
+            </div>
         </div>
+        <nav class="navegacion">
+            <ul>
+                <li>
+                    <a id="inbox" href="#">
+                        <ion-icon name="mail-unread-outline"></ion-icon>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <ion-icon name="star-outline"></ion-icon>
+                        <span>cliente</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <ion-icon name="paper-plane-outline"></ion-icon>
+                        <span>Factura</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <ion-icon name="document-text-outline"></ion-icon>
+                        <span>Producto</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+    <div class="contenido-principal">
+        <h1>Cliente</h1>
+        <p>Filtrar por nombre</p>
+        <input type="text" placeholder="Buscar cliente...">
+        <p>filtro por ciudad</p>
+        <select name="filtro1" id="filtro1">
+            <option value="opcion1">Opción 1</option>
+            <option value="opcion2">Opción 2</option>
+            <option value="opcion3">Opción 3</option>
+        </select>
+        <p>filtro por estado</p>
+        <select name="filtro2" id="filtro2">
+            <option value="opcion1">Opción 1</option>
+            <option value="opcion2">Opción 2</option>
+            <option value="opcion3">Opción 3</option>
+        </select>
     </div>
 </body>
 </html>
