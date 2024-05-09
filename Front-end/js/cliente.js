@@ -52,7 +52,6 @@ function listaClientes() {
                 trRegistro.appendChild(celdaApellidoCliente);
                 trRegistro.appendChild(celdaTelefono);
                 trRegistro.appendChild(celdaDireccion);
-                trRegistro.appendChild(celdaCiudad);
                 trRegistro.appendChild(celdaEstado);
 
                 // Añade la fila a la tabla
