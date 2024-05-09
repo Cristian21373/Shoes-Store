@@ -27,6 +27,10 @@ body{
     z-index: 100;
 }
 
+button{
+    margin-left: 70em;
+
+}
 
 /*Barra Lateral*/
 .barra-lateral{
@@ -76,10 +80,22 @@ body{
   
     transition: background-color 0.3s ease;
     font-size: large;
+    margin-left: -13px;
+}
+
+.crear{
+    margin-left: 15px;
+    margin-right: 55em;
 }
 
 .barra-lateral .navegacion a:hover {
     background-color: #80b2ff9c; 
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-left: -29em;
+    margin-bottom: 55px;
 }
 
 
@@ -118,10 +134,76 @@ body{
 
 .contenido-principal input[type="text"],
 .contenido-principal select {
-    width: 48%; 
+    width: 64%; 
     padding: 8px;
-    border-radius: 5px;
+    border-radius: 14px;
     border: 1px solid #ccc;
     font-size: 16px;
     margin-bottom: 10px;
 }
+
+.filtro-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 65px;
+}
+
+.filtro-container div {
+    width: 48%;
+    margin-bottom: 10px;
+}
+
+.row {
+    --bs-gutter-x: 1.5rem;
+    --bs-gutter-y: 0;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: calc(-1* var(--bs-gutter-y));
+    margin-right: calc(-.5* var(--bs-gutter-x));
+    margin-left: calc(-1.5* var(--bs-gutter-x));
+}
+
+[type=search] {
+    outline-offset: -2px;
+    width: 32%;
+    height: 39px;
+    border-radius: 10px;
+    margin-bottom: 21px;
+}
+
+h4 {
+    font-size: 18px;
+    margin-left: -235px;
+}
+
+.container__buscardor {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.buscador-container {
+    width: calc(30% - 10px); /* Ajusta el ancho según tus necesidades */
+}
+
+.input__buscador {
+    width: 100%;
+}
+
+.miTabla th,
+.miTabla td {
+    border-bottom: 2px solid #dee2e6;
+    border-left: 1px solid #dee2e6;
+    border-right: 2px solid #dee2e6;
+    padding: 15px 15px;
+}
+
+.miTabla tbody tr {
+    border-bottom: 1px solid #dee2e6; /* Línea divisoria en la parte inferior de cada fila del cuerpo de la tabla */
+}
+
