@@ -1,37 +1,75 @@
 var url = "http://localhost:8080/api/v1/clientes/";
 
 function listaClientes() {
+    // Método para listar los clientes
+    // Se crea la petición AJAX
     var capturarFiltro = document.getElementById("SearchName").value;
-    var urlclientes = url;
+    var urlLocal = url;
     if (capturarFiltro != "") {
-        urlclientes += "/busquedafiltro/" + capturarFiltro; // Corregido: Agrega '/' antes de 'busquedafiltro'
+        urlLocal += "busquedafiltro/" + capturarFiltro;
     }
     $.ajax({
-        url: urlclientes,
+        url: urlLocal,
         type: "GET",
         success: function (result) {
             console.log(result);
 
             var cuerpoTabla = document.getElementById("cuerpoTabla");
-
+            // Se limpia el cuerpo de la tabla
             cuerpoTabla.innerHTML = "";
-
-            // Resto del código permanece igual
-
+            // Se hace un ciclo que recorra el arreglo con los datos
             for (var i = 0; i < result.length; i++) {
-                let trRegistro = document.createElement("tr");
-                trRegistro.classList.add(i % 2 === 0 ? "form-fielddd" : "form-fieldd");
+                // Una etiqueta tr por cada registro
+                var trRegistro = document.createElement("tr");
+                var celdaIdentificacion = document.createElement("td");
+                var celdaTipoIdentificacion = document.createElement("td");
+                var celdaNumeroIdentificacion = document.createElement("td");
+                var celdaNombreCliente = document.createElement("td");
+                var celdaApellidoCliente = document.createElement("td");
+                var celdaCiudad = document.createElement("td");
+                var celdaDireccion = document.createElement("td");
+                var celdaTelefono = document.createElement("td");
+                var celdaEstado = document.createElement("td");
+                var celdaAcciones = document.createElement("td");
 
-                // Asignación de datos a las celdas de la tabla
-                let celdaIdentificacion = document.createElement("td");
-                let celdaTipoIdentificacion = document.createElement("td");
-                let celdaNumeroIdentificacion = document.createElement("td");
-                let celdaNombreCliente = document.createElement("td");
-                let celdaApellidoCliente = document.createElement("td");
-                let celdaCiudad = document.createElement("td");
-                let celdaDireccion = document.createElement("td");
-                let celdaTelefono = document.createElement("td");
-                let celdaEstado = document.createElement("td");
+                var headerAcciones = document.getElementById("headerAcciones");
+
+                var botonEditarCliente = document.createElement("button");
+                botonEditarCliente.innerText = "Editar";
+                botonEditarCliente.onclick = function () {
+                    $('#exampleModal').modal('show');
+                    consultarClienteID(result[i]["id_cliente"]);
+                };
+                botonEditarCliente.className = "btn btn-warning editar_cliente";
+
+                var botonEliminar = document.createElement("button");
+                botonEliminar.innerText = "Eliminar";
+                botonEliminar.onclick = function () {
+                    $('#exampleModal').modal('show');
+                    consultarClienteID(result[i]["id_cliente"]);
+                };
+                botonEliminar.className = "btn btn-danger eliminar";
+
+                var botonCambiar_estado = document.createElement("button");
+                botonCambiar_estado.innerText = "Estado";
+                botonCambiar_estado.onclick = function () {
+                    $('#exampleModal').modal('show');
+                    consultarClienteID(result[i]["id_cliente"]);
+                };
+                botonCambiar_estado.className = "btn btn-primary cambiar_estado";
+
+                // Crear un contenedor div para los botones
+                var divBotones = document.createElement("div");
+                divBotones.className = "btn-group"; // Agregar la clase btn-group para que los botones estén en línea
+
+                // Agregar los botones al contenedor div
+                divBotones.appendChild(botonEditarCliente);
+                divBotones.appendChild(botonEliminar);
+                divBotones.appendChild(botonCambiar_estado);
+
+                // Agregar el contenedor de botones a la celda de acciones
+                celdaAcciones.appendChild(divBotones);
+
 
                 celdaIdentificacion.innerText = result[i]["id_cliente"];
                 celdaTipoIdentificacion.innerText = result[i]["tipo_identificacion"];
@@ -43,7 +81,6 @@ function listaClientes() {
                 celdaTelefono.innerText = result[i]["telefono"];
                 celdaEstado.innerText = result[i]["estado"];
 
-                // Añade las celdas a la fila
                 trRegistro.appendChild(celdaIdentificacion);
                 trRegistro.appendChild(celdaTipoIdentificacion);
                 trRegistro.appendChild(celdaNumeroIdentificacion);
@@ -53,70 +90,73 @@ function listaClientes() {
                 trRegistro.appendChild(celdaDireccion);
                 trRegistro.appendChild(celdaCiudad);
                 trRegistro.appendChild(celdaEstado);
+                trRegistro.appendChild(celdaAcciones);
 
-                // Añade la fila a la tabla
                 cuerpoTabla.appendChild(trRegistro);
             }
         },
         error: function (error) {
-            console.error("Error en la petición:", error); 
-            alert("Error en la petición: " + error.statusText); 
+            console.error("Error en la petición:", error);
+            alert("Error en la petición: " + error.statusText);
         }
     });
 }
 
+
+
+
 function registrarClientes() {
-  let formData = {
-      "tipo_identificacion": document.getElementById("tipo_identificacion").value,
-      "identificacion": document.getElementById("identificacion").value,
-      "nombre_cliente": document.getElementById("nombre_cliente").value,
-      "apellido_cliente": document.getElementById("apellido_cliente").value,
-      "telefono": document.getElementById("telefono").value,
-      "direccion": document.getElementById("direccion").value,
-      "ciudad": document.getElementById("ciudad").value,
-      "estado": document.getElementById("estado").value
-  };
+    let formData = {
+        "tipo_identificacion": document.getElementById("tipo_identificacion").value,
+        "identificacion": document.getElementById("identificacion").value,
+        "nombre_cliente": document.getElementById("nombre_cliente").value,
+        "apellido_cliente": document.getElementById("apellido_cliente").value,
+        "telefono": document.getElementById("telefono").value,
+        "direccion": document.getElementById("direccion").value,
+        "ciudad": document.getElementById("ciudad").value,
+        "estado": document.getElementById("estado").value
+    };
 
-  
-  if (formData.tipo_identificacion.trim() === "") {
-      
-      Swal.fire({
-          title: "Error",
-          text: "Por favor, seleccione un tipo de identificación.",
-          icon: "error"
-      });
-      return; 
-  }
 
- 
-  $.ajax({
-      url: url,
-      type: "POST",
-      data: formData,
-      success: function (result) {
-          Swal.fire({
-              title: "¡Excelente!",
-              text: "Se guardó correctamente",
-              icon: "success"
-          });
-          limpiarCliente();
-      },
-      error: function (error) {
-          
-          Swal.fire({
-              title: "Error",
-              text: "Ocurrió un error al guardar el cliente. Por favor, inténtelo de nuevo.",
-              icon: "error"
-          });
-      },
-  });
+    if (formData.tipo_identificacion.trim() === "") {
+
+        Swal.fire({
+            title: "Error",
+            text: "Por favor, seleccione un tipo de identificación.",
+            icon: "error"
+        });
+        return;
+    }
+
+
+    $.ajax({
+        url: url,
+        type: "POST",
+        data: formData,
+        success: function (result) {
+            Swal.fire({
+                title: "¡Excelente!",
+                text: "Se guardó correctamente",
+                icon: "success"
+            });
+            limpiarCliente();
+        },
+        error: function (error) {
+
+            Swal.fire({
+                title: "Error",
+                text: "Ocurrió un error al guardar el cliente. Por favor, inténtelo de nuevo.",
+                icon: "error"
+            });
+        },
+    });
 }
 
 
 
 function validartipo_identificacion(celdatipo_identificacion) {
     var valor = celdatipo_identificacion.value;
-    var valido = valor !== ""; 
+    var valido = valor !== "";
     if (!valido) {
 
         alert("Por favor, seleccione un tipo de documento.");

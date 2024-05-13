@@ -67,7 +67,11 @@
         </div>
         <div class="buscador-container">
             <h4>filtrar por Estado</h4>
-            <input required="" type="search" name="text" class="input__buscador" id="SearchState" placeholder="Estado">
+            <select class="form-select" id="Estado">
+                <option selected disabled>Seleccione el estado</option>
+                <option value="ACTIVO">ACTIVO</option>
+                <option value="INACTIVO">INACTIVO</option>
+            </select>
         </div>
     </div>
     <a class="crear" href="./crearCliente.html">
@@ -76,7 +80,7 @@
     
     <input type="button" class="btn btn-info mb-2" value="Buscar" onclick="listaClientes()">
     &nbsp;&nbsp;
-    <a href="./listaClientes.html">
+    <a href="./Cliente.html">
       <input type="button" class="btn btn-secondary mb-2" value="Limpiar">
     </a>
     <br>
