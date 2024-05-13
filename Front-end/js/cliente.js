@@ -45,8 +45,21 @@ function listaClientes() {
                 var botonEliminar = document.createElement("button");
                 botonEliminar.innerText = "Eliminar";
                 botonEliminar.onclick = function () {
-                    $('#exampleModal').modal('show');
-                    consultarClienteID(result[i]["id_cliente"]);
+                    // Mostrar cuadro de confirmación
+                    Swal.fire({
+                        title: '¿Estás seguro?',
+                        text: "¡No podrás revertir esto!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Sí, eliminarlo'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Si se confirma, llamar a la función para eliminar
+                            eliminarCliente(result[i]["id_cliente"]);
+                        }
+                    });
                 };
                 botonEliminar.className = "btn btn-danger eliminar";
 
@@ -67,6 +80,8 @@ function listaClientes() {
                 divBotones.appendChild(botonEliminar);
                 divBotones.appendChild(botonCambiar_estado);
 
+
+                
                 // Agregar el contenedor de botones a la celda de acciones
                 celdaAcciones.appendChild(divBotones);
 
@@ -101,6 +116,46 @@ function listaClientes() {
         }
     });
 }
+function eliminarCliente(id_cliente) {
+    // Mostrar cuadro de confirmación
+    Swal.fire({
+        title: '¿Estás seguro?',
+        text: "¡No podrás revertir esto!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminarlo'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Realizar la solicitud AJAX DELETE para eliminar el cliente
+            $.ajax({
+                url: url + id_cliente, // Aquí se utiliza la URL correcta con el ID del cliente
+                type: "DELETE",
+                success: function (result) {
+                    // Mostrar mensaje de éxito
+                    Swal.fire(
+                        'Eliminado',
+                        'El cliente ha sido eliminado correctamente.',
+                        'success'
+                    );
+                    // Volver a cargar la lista de clientes después de la eliminación
+                    listaClientes();
+                },
+                error: function (error) {
+                    console.error("Error al eliminar el cliente:", error);
+                    // Mostrar mensaje de error
+                    Swal.fire(
+                        'Error',
+                        'Ocurrió un error al eliminar el cliente. Por favor, inténtelo de nuevo.',
+                        'error'
+                    );
+                }
+            });
+        }
+    });
+}
+
 
 function registrarClientes() {
     let formData = {
@@ -177,3 +232,5 @@ function validarTelefono(telefono) {
     var regex = /^[0-9]+$/;
     return regex.test(telefono);
 }
+
+
