@@ -102,9 +102,6 @@ function listaClientes() {
     });
 }
 
-
-
-
 function registrarClientes() {
     let formData = {
         "tipo_identificacion": document.getElementById("tipo_identificacion").value,
@@ -117,17 +114,35 @@ function registrarClientes() {
         "estado": document.getElementById("estado").value
     };
 
-
-    if (formData.tipo_identificacion.trim() === "") {
-
+    // Validar número de identificación
+    if (!validarNumeroIdentificacion(formData.identificacion.trim())) {
         Swal.fire({
             title: "Error",
-            text: "Por favor, seleccione un tipo de identificación.",
+            text: "El número de identificación debe contener solo números.",
             icon: "error"
         });
         return;
     }
 
+    // Verificar que la longitud del número de identificación no exceda los 11 dígitos
+    if (formData.identificacion.trim().length > 11) {
+        Swal.fire({
+            title: "Error",
+            text: "El número de identificación debe ser de 11 digitos.",
+            icon: "error"
+        });
+        return;
+    }
+
+    // Validar teléfono
+    if (!validarTelefono(formData.telefono.trim())) {
+        Swal.fire({
+            title: "Error",
+            text: "El teléfono debe contener solo números.",
+            icon: "error"
+        });
+        return;
+    }
 
     $.ajax({
         url: url,
@@ -142,7 +157,6 @@ function registrarClientes() {
             limpiarCliente();
         },
         error: function (error) {
-
             Swal.fire({
                 title: "Error",
                 text: "Ocurrió un error al guardar el cliente. Por favor, inténtelo de nuevo.",
@@ -152,15 +166,14 @@ function registrarClientes() {
     });
 }
 
+function validarNumeroIdentificacion(numero) {
+    // Expresión regular que valida que el número de identificación sea numérico
+    var regex = /^[0-9]+$/;
+    return regex.test(numero);
+}
 
-
-function validartipo_identificacion(celdatipo_identificacion) {
-    var valor = celdatipo_identificacion.value;
-    var valido = valor !== "";
-    if (!valido) {
-
-        alert("Por favor, seleccione un tipo de documento.");
-    }
-    actualizarClaseValidacion(celdatipo_identificacion, valido);
-    return valido;
+function validarTelefono(telefono) {
+    // Expresión regular que valida que el teléfono sea numérico
+    var regex = /^[0-9]+$/;
+    return regex.test(telefono);
 }
