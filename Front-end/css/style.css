@@ -197,13 +197,98 @@ h4 {
 
 .miTabla th,
 .miTabla td {
-    border-bottom: 2px solid #dee2e6;
-    border-left: 1px solid #dee2e6;
-    border-right: 2px solid #dee2e6;
+    border-bottom: 2px solid #007fff;
+    border-left: 1px solid #007fff;
+    border-right: 2px solid #007fff;
     padding: 15px 15px;
 }
 
 .miTabla tbody tr {
     border-bottom: 1px solid #dee2e6; /* Línea divisoria en la parte inferior de cada fila del cuerpo de la tabla */
 }
+
+td{
+    font-size: 13px;
+}
+
+
+/* Ajustes para dispositivos con una resolución de 1517 x 674 */
+
+/* Ajustes para dispositivos con una resolución de 1517 x 674 */
+/* Ajustes para dispositivos con una resolución de 1517 x 674 */
+@media screen and (max-width: 1519px) and (max-height: 675px) {
+    h1 {
+        font-size: 2.5rem;
+        margin-left: -17em;
+        margin-bottom: 55px;
+    }
+
+    h4 {
+        font-size: 18px;
+        margin-left: -175px;
+    }
+
+    .container__buscardor {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 20px;
+        margin-left: 211px;
+    }
+
+    .buscador-container {
+        width: calc(30% - 10px);
+        margin-top: -23px;
+    }
+
+    .mb-2 {
+        margin-bottom: 2.5rem !important;
+        margin-left: 9em;
+    }
+
+    /* Ajustes para la tabla */
+    .miTabla th,
+    .miTabla td {
+        padding: 2px; /* Reducir el espacio dentro de las celdas */
+    }
+
+    .miTabla {
+        font-size: 14px; /* Reducir el tamaño de fuente para que quepa más contenido en la tabla */
+    }
+
+    /* Ajustes para mover los botones hacia arriba */
+    .crear {
+        margin-top: 20px; /* Ajusta el margen superior del botón Nuevo registro */
+        margin-right: 22em; /* Ajusta el margen derecho del botón Nuevo registro */
+    }
+
+    .crear input[type="button"] {
+        margin-bottom: 10px; /* Ajusta el margen inferior del botón Nuevo registro */
+    }
+
+    /* Ajustes para los botones Buscar y Limpiar */
+    .container__buscardor {
+        margin-top: 20px; /* Ajusta el margen superior del contenedor de los botones Buscar y Limpiar */
+    }
+
+    .container__buscardor .crear {
+        margin-left: 0; /* Restablece el margen izquierdo del botón Nuevo registro */
+        margin-right: 0; /* Restablece el margen derecho del botón Nuevo registro */
+    }
+
+    /* Ajustes para el espacio entre los botones Buscar y Limpiar */
+    .container__buscardor input[type="button"] {
+        margin-right: 10px; /* Ajusta el margen derecho de los botones Buscar y Limpiar */
+    }
+    .contenido-principal {
+        position: relative; /* Asegúrate de que el posicionamiento sea relativo */
+        left: 100em; /* Cambia este valor según sea necesario para desplazar el contenido hacia la derecha */
+    }
+
+
+ 
+}
+
+
 

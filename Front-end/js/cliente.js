@@ -43,7 +43,6 @@ function listaClientes() {
                 celdaTelefono.innerText = result[i]["telefono"];
                 celdaEstado.innerText = result[i]["estado"];
 
-
                 // Añade las celdas a la fila
                 trRegistro.appendChild(celdaIdentificacion);
                 trRegistro.appendChild(celdaTipoIdentificacion);
@@ -52,16 +51,76 @@ function listaClientes() {
                 trRegistro.appendChild(celdaApellidoCliente);
                 trRegistro.appendChild(celdaTelefono);
                 trRegistro.appendChild(celdaDireccion);
+                trRegistro.appendChild(celdaCiudad);
                 trRegistro.appendChild(celdaEstado);
 
                 // Añade la fila a la tabla
                 cuerpoTabla.appendChild(trRegistro);
             }
-
         },
         error: function (error) {
-            console.error("Error en la petición:", error); // Corregido: Muestra el error en la consola
-            alert("Error en la petición: " + error.statusText); // Corregido: Muestra el mensaje de error en una alerta
+            console.error("Error en la petición:", error); 
+            alert("Error en la petición: " + error.statusText); 
         }
     });
+}
+
+function registrarClientes() {
+  let formData = {
+      "tipo_identificacion": document.getElementById("tipo_identificacion").value,
+      "identificacion": document.getElementById("identificacion").value,
+      "nombre_cliente": document.getElementById("nombre_cliente").value,
+      "apellido_cliente": document.getElementById("apellido_cliente").value,
+      "telefono": document.getElementById("telefono").value,
+      "direccion": document.getElementById("direccion").value,
+      "ciudad": document.getElementById("ciudad").value,
+      "estado": document.getElementById("estado").value
+  };
+
+  
+  if (formData.tipo_identificacion.trim() === "") {
+      
+      Swal.fire({
+          title: "Error",
+          text: "Por favor, seleccione un tipo de identificación.",
+          icon: "error"
+      });
+      return; 
+  }
+
+ 
+  $.ajax({
+      url: url,
+      type: "POST",
+      data: formData,
+      success: function (result) {
+          Swal.fire({
+              title: "¡Excelente!",
+              text: "Se guardó correctamente",
+              icon: "success"
+          });
+          limpiarCliente();
+      },
+      error: function (error) {
+          
+          Swal.fire({
+              title: "Error",
+              text: "Ocurrió un error al guardar el cliente. Por favor, inténtelo de nuevo.",
+              icon: "error"
+          });
+      },
+  });
+}
+
+
+
+function validartipo_identificacion(celdatipo_identificacion) {
+    var valor = celdatipo_identificacion.value;
+    var valido = valor !== ""; 
+    if (!valido) {
+
+        alert("Por favor, seleccione un tipo de documento.");
+    }
+    actualizarClaseValidacion(celdatipo_identificacion, valido);
+    return valido;
 }
