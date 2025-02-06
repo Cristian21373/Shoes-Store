@@ -27,7 +27,7 @@ public class clientesController {
             @ModelAttribute("clientes") clientes clientes
             ){
         
-        clientesService.save(clientes);
+        clientesService.save(clientes); 
         return new ResponseEntity<>(clientes, HttpStatus.OK);
         
     }
